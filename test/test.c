@@ -1,41 +1,91 @@
 #include <stdio.h>
-#define STOP '#'
+#define PLAN1 17850
+#define PLAN2 23900
+#define PLAN3 29750
+#define PLAN4 14875
+#define RATE1 0.15
+#define RATE2 0.28
 
 int main(void)
 {
-    int ch;
-    int n = 0;
-    int flag = 0;
+    int n;
+    double wage, tax;
 
-    printf("Enter some characters('#' to quit):\n");
-    while ((ch = getchar()) != STOP)
+    while (1)
     {
-        switch (ch)
+        printf("********************************\n");
+        printf("1) single\n");
+        printf("2) householder\n");
+        printf("3) married\n");
+        printf("4) married but divorced\n");
+        printf("5) quit\n");
+        printf("********************************\n");
+        printf("Please you choose: ");
+        while (scanf_s("%d", &n) != 1 || (n > 5 || n < 1))
         {
-        case 'e':
-        {
-            flag = 1;
-            //↑保存一个出现e的标记;
-            break;
+            while (getchar() != '\n')
+                continue;
+            printf("Please enter 1, 2, 3, 4 or 5: ");
         }
-        case 'i':
+        if (n != 5)
         {
-            if (1 == flag)
+            printf("Please enter your wage: ");
+            scanf_s("%lf", &wage);
+        }
+        if (1 == n)
+        {
+            if (wage <= PLAN1)
             {
-                n++;
+                tax = wage * RATE1;
             }
-            //↑统计ei出现的次数;
-            flag = 0;
-            break;
+            else
+            {
+                tax = PLAN1 * RATE1 + (wage - PLAN1) * RATE2;
+            }
+            printf("Your tax: %g\n\n", tax);
         }
-        default:
+        else if (2 == n)
         {
-            flag = 0;
-            //↑如果e的下一个字符不是i则清除标记;
+            if (wage <= PLAN2)
+            {
+                tax = wage * RATE1;
+            }
+            else
+            {
+                tax = PLAN2 * RATE1 + (wage - PLAN2) * RATE2;
+            }
+            printf("Your tax: %g\n\n", tax);
         }
+        else if (3 == n)
+        {
+            if (wage <= PLAN3)
+            {
+                tax = wage * RATE1;
+            }
+            else
+            {
+                tax = PLAN3 * RATE1 + (wage - PLAN3) * RATE2;
+            }
+            printf("Your tax: %g\n\n", tax);
+        }
+        else if (4 == n)
+        {
+            if (wage <= PLAN4)
+            {
+                tax = wage * RATE1;
+            }
+            else
+            {
+                tax = PLAN4 * RATE1 + (wage - PLAN4) * RATE2;
+            }
+            printf("Your tax: %g\n\n", tax);
+        }
+        else if (5 == n)
+        {
+            break;
         }
     }
-    printf("\nTotally exist %d times \'ei\'.\n", n);
+    printf("Done.\n");
 
     return 0;
 }
