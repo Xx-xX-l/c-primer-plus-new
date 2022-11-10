@@ -1,91 +1,42 @@
 #include <stdio.h>
-#define PLAN1 17850
-#define PLAN2 23900
-#define PLAN3 29750
-#define PLAN4 14875
-#define RATE1 0.15
-#define RATE2 0.28
+#include <ctype.h>
 
 int main(void)
 {
-    int n;
-    double wage, tax;
+    int high = 100;
+    int low = 1;
+    int guess = (high + low) / 2;
+    int response;
 
-    while (1)
+    printf("Pick an integer from 1 to 100. I will try to guess ");
+    printf("it.\nRespond with a y if my guess is right, with");
+    printf("\na h if it is high, and with an l if it is low.\n");
+    printf("Uh...is your number %d?\n", guess);
+    while ((response = getchar()) != 'y')
     {
-        printf("********************************\n");
-        printf("1) single\n");
-        printf("2) householder\n");
-        printf("3) married\n");
-        printf("4) married but divorced\n");
-        printf("5) quit\n");
-        printf("********************************\n");
-        printf("Please you choose: ");
-        while (scanf_s("%d", &n) != 1 || (n > 5 || n < 1))
+        if (response == '\n')
         {
-            while (getchar() != '\n')
-                continue;
-            printf("Please enter 1, 2, 3, 4 or 5: ");
+            continue;
         }
-        if (n != 5)
+        if (tolower(response) != 'h' && tolower(response) != 'l')
         {
-            printf("Please enter your wage: ");
-            scanf_s("%lf", &wage);
+            printf("I don't understand that response. Please enter h for\n");
+            printf("high, l for low, or y for correct.\n");
+            continue;
         }
-        if (1 == n)
+        if (tolower(response) == 'h')
         {
-            if (wage <= PLAN1)
-            {
-                tax = wage * RATE1;
-            }
-            else
-            {
-                tax = PLAN1 * RATE1 + (wage - PLAN1) * RATE2;
-            }
-            printf("Your tax: %g\n\n", tax);
+            high = guess - 1;
         }
-        else if (2 == n)
+        else if (tolower(response) == 'l')
         {
-            if (wage <= PLAN2)
-            {
-                tax = wage * RATE1;
-            }
-            else
-            {
-                tax = PLAN2 * RATE1 + (wage - PLAN2) * RATE2;
-            }
-            printf("Your tax: %g\n\n", tax);
+            low = guess + 1;
         }
-        else if (3 == n)
-        {
-            if (wage <= PLAN3)
-            {
-                tax = wage * RATE1;
-            }
-            else
-            {
-                tax = PLAN3 * RATE1 + (wage - PLAN3) * RATE2;
-            }
-            printf("Your tax: %g\n\n", tax);
-        }
-        else if (4 == n)
-        {
-            if (wage <= PLAN4)
-            {
-                tax = wage * RATE1;
-            }
-            else
-            {
-                tax = PLAN4 * RATE1 + (wage - PLAN4) * RATE2;
-            }
-            printf("Your tax: %g\n\n", tax);
-        }
-        else if (5 == n)
-        {
-            break;
-        }
+        guess = (high + low) / 2;
+        printf("Well, then, is it %d?\n", guess);
     }
-    printf("Done.\n");
+    printf("I knew I could do it!\n");
 
     return 0;
 }
+
