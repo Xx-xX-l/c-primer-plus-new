@@ -203,3 +203,157 @@ int main(void)
 }
 
 */
+
+
+//第六题
+
+
+/*
+#include <stdio.h>
+#include <ctype.h>
+
+char get_first(void);
+
+int main(void)
+
+{
+	char ch;
+
+	printf("enter whatever you want :\n");
+	ch = get_first();
+	printf("the first non-space character is %c", ch);
+
+	return 0;
+}
+
+char get_first(viod)
+
+{
+	char ch;
+	
+	
+	do
+	{
+		ch = getchar();
+	} while (isspace(ch));  // 先执行一次，获取ch，然后判断
+
+	while (getchar() != '\n')
+		continue;
+	
+	return ch;
+
+}
+
+*/
+
+
+
+
+
+//第八题
+
+#include <stdio.h>
+#include <ctype.h>
+#include <math.h>
+
+int main(void)
+
+{
+
+	float first, second;
+
+	int choice;
+	int n = 1;
+	while (n==1)
+	{
+		printf("Enter the operation of your choice:\n");
+		printf("a.add                      s.subtract\n");
+		printf("m.multiply                 d.divide\n");
+		printf("q.quit\n");
+		choice = getchar();
+		while (getchar() != '\n')
+			continue;
+		if (choice == 'q')
+		{
+			n = 0;
+		}
+
+		while (choice != 'q' && (choice == 'a' || choice == "s" || choice== 'm'|| choice=='d'))
+		{
+
+
+			printf("please enter the first number :");
+			if(scanf_s("%f", &first)!=1)
+			{
+				while ((first = getchar()) != '\n')
+				{
+					putchar(first);
+				}
+				printf(" is not an number.\n");
+				printf("Please enter a number such as 2.5, -1.78E8 or 3: ");
+				scanf_s("%f", &first);
+				
+			}
+			while (getchar() != '\n')
+				continue;
+
+			printf("please enter the second number :");
+			if (scanf_s("%f", &second) != 1)
+			{
+				while ((second = getchar()) != '\n')
+				{
+					putchar(second);
+				}
+				printf(" is not an number.\n");
+				printf("Please enter a number such as 2.5, -1.78E8 or 3: ");
+				scanf_s("%f", &second);
+	
+			}
+			while (getchar() != '\n')
+				continue;
+
+
+			switch (choice)
+			{
+			case'a':
+				printf("the result is %g\n", first + second);
+				break;
+			case's':
+				printf("the result is %g\n", first - second);
+				break;
+			case'd':
+				while (fabs(second) <= 1e-6)
+				{
+					//↑判断float型浮点数是否为0;
+					printf("Enter a number other than 0: ");
+					if (scanf_s("%f", &second) != 1)
+					{
+						while ((second = getchar()) != '\n')
+						{
+							putchar(second);
+						}
+						printf(" is not an number.\n");
+						printf("Please enter a number such as 2.5, -1.78E8 or 3: ");
+						scanf_s("%f", &second);
+						
+					}
+					while (getchar() != '\n')
+						continue;
+				}
+				printf("the result is %g\n", first / second);
+				break;
+			case 'm':
+				printf("the result is %g\n", first * second);
+				break;
+			default:
+				break;
+			}
+			break;
+
+		}
+		
+	}
+	
+	return 0;
+}
+
