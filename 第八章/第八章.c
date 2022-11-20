@@ -278,7 +278,7 @@ int main(void)
 			n = 0;
 		}
 
-		while (choice != 'q' && (choice == 'a' || choice == "s" || choice== 'm'|| choice=='d'))
+		while (choice != 'q' && (choice == 'a' || choice == 's' || choice == 'm' || choice == 'd'))
 		{
 
 
@@ -324,7 +324,9 @@ int main(void)
 			case'd':
 				while (fabs(second) <= 1e-6)
 				{
-					//↑判断float型浮点数是否为0;
+					//↑判断float型浮点数是否为0; 
+					// 重点！！！！！！！！！！//
+
 					printf("Enter a number other than 0: ");
 					if (scanf_s("%f", &second) != 1)
 					{
