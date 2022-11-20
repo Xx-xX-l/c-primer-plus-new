@@ -264,6 +264,7 @@ int main(void)
 
 	int choice;
 	int n = 1;
+
 	while (n==1)
 	{
 		printf("Enter the operation of your choice:\n");
@@ -283,7 +284,7 @@ int main(void)
 
 
 			printf("please enter the first number :");
-			if(scanf_s("%f", &first)!=1)
+			while (scanf_s("%f", &first)!=1 )
 			{
 				while ((first = getchar()) != '\n')
 				{
@@ -291,14 +292,11 @@ int main(void)
 				}
 				printf(" is not an number.\n");
 				printf("Please enter a number such as 2.5, -1.78E8 or 3: ");
-				scanf_s("%f", &first);
-				
 			}
-			while (getchar() != '\n')
-				continue;
+
 
 			printf("please enter the second number :");
-			if (scanf_s("%f", &second) != 1)
+			while (scanf_s("%f", &second) != 1)
 			{
 				while ((second = getchar()) != '\n')
 				{
@@ -306,8 +304,6 @@ int main(void)
 				}
 				printf(" is not an number.\n");
 				printf("Please enter a number such as 2.5, -1.78E8 or 3: ");
-				scanf_s("%f", &second);
-	
 			}
 			while (getchar() != '\n')
 				continue;
